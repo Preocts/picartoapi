@@ -5,6 +5,7 @@ black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://gith
 status](https://results.pre-commit.ci/badge/github/Preocts/picartoapi/main.svg)](https://results.pre-commit.ci/latest/github/Preocts/picartoapi/main)
 [![Python
 package](https://github.com/Preocts/picartoapi/actions/workflows/python-tests.yml/badge.svg?branch=main)](https://github.com/Preocts/picartoapi/actions/workflows/python-tests.yml)
+[![codecov](https://codecov.io/gh/Preocts/picartoapi/branch/main/graph/badge.svg?token=a7hGdA1P3L)](https://codecov.io/gh/Preocts/picartoapi)
 
 # picartoapi
 
@@ -14,7 +15,7 @@ API client for the Public endpoints of Picarto API v1
 
 - [Python](https://python.org) >= 3.8
 - [SecretBox](https://github.com/Preocts/secretbox) == v2.4.0
-- [http_overeasy](https://github.com/Preocts/http_overeasy) == v1.3.0
+- [http_overeasy](https://github.com/Preocts/http_overeasy) == v1.3.1
 
 ## Internal Links
 
