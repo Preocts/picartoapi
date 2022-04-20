@@ -1,0 +1,58 @@
+[
+    {
+        "id": 1,
+        "name": "Creative",
+        "adult": false,
+        "is_active": true,
+        "image": "https://images.picarto.tv/categories/creative.jpg",
+        "created_at": "2021-03-22 23:32:15",
+        "updated_at": "2021-03-22 23:32:15",
+        "deleted_at": null,
+        "total_viewers": 0,
+        "total_channels": 0,
+        "online_channels": 26,
+        "total_views": "82"
+    },
+    {
+        "id": 6,
+        "name": "Anime",
+        "adult": false,
+        "is_active": true,
+        "image": "https://images.picarto.tv/categories/anime.jpg",
+        "created_at": "2021-03-22 23:32:15",
+        "updated_at": "2021-03-22 23:32:15",
+        "deleted_at": null,
+        "total_viewers": 0,
+        "total_channels": 0,
+        "online_channels": 3,
+        "total_views": "75"
+    },
+    {
+        "id": 3,
+        "name": "Concept Art",
+        "adult": false,
+        "is_active": true,
+        "image": "https://images.picarto.tv/categories/concept-art.jpg",
+        "created_at": "2021-03-22 23:32:15",
+        "updated_at": "2021-03-22 23:32:15",
+        "deleted_at": null,
+        "total_viewers": 0,
+        "total_channels": 0,
+        "online_channels": 1,
+        "total_views": "26"
+    },
+    {
+        "id": 2,
+        "name": "Character Design",
+        "adult": false,
+        "is_active": true,
+        "image": "https://images.picarto.tv/categories/character-design.jpg",
+        "created_at": "2021-03-22 23:32:15",
+        "updated_at": "2021-03-22 23:32:15",
+        "deleted_at": null,
+        "total_viewers": 0,
+        "total_channels": 0,
+        "online_channels": 4,
+        "total_views": "22"
+    }
+]
