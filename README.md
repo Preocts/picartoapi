@@ -14,7 +14,6 @@ API client for the Public endpoints of Picarto API v1
 ### Requirements
 
 - [Python](https://python.org) >= 3.8
-- [SecretBox](https://github.com/Preocts/secretbox) == v2.4.0
 - [http_overeasy](https://github.com/Preocts/http_overeasy) == v1.3.1
 
 ## Internal Links
