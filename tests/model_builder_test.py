@@ -5,13 +5,16 @@ from pathlib import Path
 import pytest
 from picartoapi.model.base_model import BaseModel
 from picartoapi.model.category import Category
+from picartoapi.model.channel import Channel
+from picartoapi.model.channel_stub import ChannelStub
 
 
 @pytest.mark.parametrize(
     ("fixture_path", "object_ref"),
     (
         ("tests/resp/categories.json", Category),
-        ("tests/resp/categories.json", Category),
+        ("tests/resp/channels.json", ChannelStub),
+        ("tests/resp/channel.json", Channel),
     ),
 )
 def test_all_models(fixture_path: str, object_ref: BaseModel) -> None:
@@ -21,6 +24,7 @@ def test_all_models(fixture_path: str, object_ref: BaseModel) -> None:
 
     # Validate model contents against resp json
     for obj, model in zip(fixture, models):
-        assert model.to_json() == obj
-        for key, value in obj.items():
-            assert getattr(model, key) == value
+        model_json = json.dumps(model.to_json(), sort_keys=True)
+        fixture_json = json.dumps(obj, sort_keys=True)
+
+        assert model_json == fixture_json

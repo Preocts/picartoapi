@@ -1,0 +1,83 @@
+[
+    {
+        "name": "Goat",
+        "user_id": 15623,
+        "avatar": "https://images.picarto.tv/ptvimages/",
+        "online": false,
+        "viewers": 0,
+        "viewers_total": 202921,
+        "thumbnails": {
+            "web": "https://thumb-us-newyork.picarto.tv/thumbnail/",
+            "web_large": "https://thumb-us-newyork.picarto.tv/thumbnail/",
+            "mobile": "https://thumb-us-newyork.picarto.tv/thumbnail/",
+            "tablet": "https://thumb-us-newyork.picarto.tv/thumbnail/g"
+        },
+        "followers": 1621,
+        "subscribers": 0,
+        "adult": true,
+        "category": [
+            "Furry"
+        ],
+        "account_type": "PREMIUM",
+        "commissions": false,
+        "recordings": false,
+        "title": "A goat adventures into art!",
+        "description_panels": [
+            {
+                "title": "Ko-Fi",
+                "body": "thank you all so much for letting me do what I love everyday <3",
+                "image": "https://images.picarto.tv/ptvimages/",
+                "image_link": "https://ko-fi.com/",
+                "button_text": "",
+                "button_link": "",
+                "position": 1
+            }
+        ],
+        "private": false,
+        "private_message": "You need the private key to view this stream",
+        "gaming": false,
+        "chat_settings": {
+            "guest_chat": false,
+            "links": false,
+            "level": false
+        },
+        "last_live": "2022-04-20 21:10:13",
+        "tags": [
+            "nsfw",
+            "Furry",
+            "comics",
+            "fantasy",
+            "dnd",
+            "adopts",
+            "livestream"
+        ],
+        "multistream": [
+            {
+                "user_id": 11042,
+                "name": "bird",
+                "online": false,
+                "adult": false
+            },
+            {
+                "user_id": 15623,
+                "name": "Goat",
+                "online": false,
+                "adult": true
+            },
+            {
+                "user_id": 124518,
+                "name": "scrib",
+                "online": false,
+                "adult": true
+            }
+        ],
+        "languages": [
+            {
+                "id": 19,
+                "name": "English"
+            }
+        ],
+        "following": false,
+        "creation_date": "2016-04-26"
+    }
+]
