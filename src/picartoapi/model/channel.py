@@ -48,11 +48,11 @@ class Channel(BaseModel):
         new_obj.name = channel.get("name") or ""
         new_obj.avatar = channel.get("avatar") or ""
         new_obj.online = channel.get("online") or False
-        new_obj.viewers = channel.get("viewers") or False
-        new_obj.viewers_total = channel.get("viewers_total") or False
+        new_obj.viewers = channel.get("viewers") or 0
+        new_obj.viewers_total = channel.get("viewers_total") or 0
         new_obj.thumbnails = Thumbnails.build_from(channel.get("thumbnails") or {})
-        new_obj.followers = channel.get("followers") or False
-        new_obj.subscribers = channel.get("subscribers") or False
+        new_obj.followers = channel.get("followers") or 0
+        new_obj.subscribers = channel.get("subscribers") or 0
         new_obj.adult = channel.get("adult") or False
         new_obj.category = channel.get("category") or []
         new_obj.account_type = channel.get("account_type") or ""
