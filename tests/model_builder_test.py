@@ -5,13 +5,14 @@ from pathlib import Path
 import pytest
 from picartoapi.model.base_model import BaseModel
 from picartoapi.model.category import Category
+from picartoapi.model.channel_stub import ChannelStub
 
 
 @pytest.mark.parametrize(
     ("fixture_path", "object_ref"),
     (
         ("tests/resp/categories.json", Category),
-        ("tests/resp/categories.json", Category),
+        ("tests/resp/channels.json", ChannelStub),
     ),
 )
 def test_all_models(fixture_path: str, object_ref: BaseModel) -> None:
