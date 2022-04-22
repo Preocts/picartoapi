@@ -1,0 +1,36 @@
+[
+    {
+        "id": 413274,
+        "title": "Furality 2000 Day 2 FT. SEAN CHIPLOCK",
+        "stream_name": "govod+golive+Senty_2020.11.07.21.54.26.mkv",
+        "thumbnails": {
+            "web": "https://recording-eu-1.picarto.tv/thumbs/golive/s/se/Senty/golive+Senty_2020.11.07.21.54.26.mkv.jpg",
+            "web_large": "https://recording-eu-1.picarto.tv/thumbs/golive/s/se/Senty/golive+Senty_2020.11.07.21.54.26.mkv.jpg",
+            "mobile": "https://recording-eu-1.picarto.tv/thumbs/golive/s/se/Senty/golive+Senty_2020.11.07.21.54.26.mkv.jpg",
+            "tablet": "https://recording-eu-1.picarto.tv/thumbs/golive/s/se/Senty/golive+Senty_2020.11.07.21.54.26.mkv.jpg"
+        },
+        "file": "https://recording-eu-1.picarto.tv/stream/hls/govod+golive+Senty_2020.11.07.21.54.26.mkv/index.m3u8",
+        "filesize": 1109209297,
+        "duration": 8095,
+        "views": 66,
+        "timestamp": "2020-11-07T23:11:53.000000Z",
+        "adult": false
+    },
+    {
+        "id": 413293,
+        "title": "Furality 2000 Day 2 Wind-down",
+        "stream_name": "govod+golive+Senty_2020.11.08.00.29.30.mkv",
+        "thumbnails": {
+            "web": "https://recording-eu-1.picarto.tv/thumbs/golive/s/se/Senty/golive+Senty_2020.11.08.00.29.30.mkv.jpg",
+            "web_large": "https://recording-eu-1.picarto.tv/thumbs/golive/s/se/Senty/golive+Senty_2020.11.08.00.29.30.mkv.jpg",
+            "mobile": "https://recording-eu-1.picarto.tv/thumbs/golive/s/se/Senty/golive+Senty_2020.11.08.00.29.30.mkv.jpg",
+            "tablet": "https://recording-eu-1.picarto.tv/thumbs/golive/s/se/Senty/golive+Senty_2020.11.08.00.29.30.mkv.jpg"
+        },
+        "file": "https://recording-eu-1.picarto.tv/stream/hls/govod+golive+Senty_2020.11.08.00.29.30.mkv/index.m3u8",
+        "filesize": 264090807,
+        "duration": 1675,
+        "views": 77,
+        "timestamp": "2020-11-07T23:57:35.000000Z",
+        "adult": false
+    }
+]

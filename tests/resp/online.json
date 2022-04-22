@@ -1,0 +1,54 @@
+[
+    {
+        "user_id": 82455,
+        "name": "rtil",
+        "avatar": "https://images.picarto.tv/ptvimages/8/82/82455/avatars/cac1537518761bc039bdd4bfbaf7b967.jpg",
+        "title": "Yoko Littner chicken dinner",
+        "viewers": 68,
+        "thumbnails": {
+            "web": "https://thumb-us-losangeles.picarto.tv/thumbnail/rtil.jpg",
+            "web_large": "https://thumb-us-losangeles.picarto.tv/thumbnail/rtil_720.jpg",
+            "mobile": "https://thumb-us-losangeles.picarto.tv/thumbnail/rtil_mobile.jpg",
+            "tablet": "https://thumb-us-losangeles.picarto.tv/thumbnail/rtil_tablet.jpg"
+        },
+        "category": "Animation",
+        "account_type": "PREMIUM",
+        "adult": false,
+        "gaming": false,
+        "commissions": false,
+        "multistream": true,
+        "languages": [
+            {
+                "id": 19,
+                "name": "English"
+            }
+        ],
+        "following": false
+    },
+    {
+        "user_id": 1784,
+        "name": "Kazecat",
+        "avatar": "https://images.picarto.tv/ptvimages/1/17/1784/avatars/09f6ec486687d65da4de25db7a52d912.jpg",
+        "title": "Kazecats Stream",
+        "viewers": 50,
+        "thumbnails": {
+            "web": "https://thumb-us-dallas.picarto.tv/thumbnail/Kazecat.jpg",
+            "web_large": "https://thumb-us-dallas.picarto.tv/thumbnail/Kazecat_720.jpg",
+            "mobile": "https://thumb-us-dallas.picarto.tv/thumbnail/Kazecat_mobile.jpg",
+            "tablet": "https://thumb-us-dallas.picarto.tv/thumbnail/Kazecat_tablet.jpg"
+        },
+        "category": "Furry",
+        "account_type": "PREMIUM",
+        "adult": false,
+        "gaming": false,
+        "commissions": false,
+        "multistream": true,
+        "languages": [
+            {
+                "id": 19,
+                "name": "English"
+            }
+        ],
+        "following": false
+    }
+]

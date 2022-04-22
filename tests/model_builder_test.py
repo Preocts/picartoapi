@@ -7,6 +7,8 @@ from picartoapi.model.base_model import BaseModel
 from picartoapi.model.category import Category
 from picartoapi.model.channel import Channel
 from picartoapi.model.channel_stub import ChannelStub
+from picartoapi.model.online import Online
+from picartoapi.model.video import Video
 
 
 @pytest.mark.parametrize(
@@ -15,6 +17,8 @@ from picartoapi.model.channel_stub import ChannelStub
         ("tests/resp/categories.json", Category),
         ("tests/resp/channels.json", ChannelStub),
         ("tests/resp/channel.json", Channel),
+        ("tests/resp/videos.json", Video),
+        ("tests/resp/online.json", Online),
     ),
 )
 def test_all_models(fixture_path: str, object_ref: BaseModel) -> None:
