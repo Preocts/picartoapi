@@ -30,6 +30,10 @@ def client() -> Generator[PublicClient, None, None]:
         ("categories", "/categories", {}, {}, False),
         ("online", "/online", ONLINE_RESP, {}, True),
         ("online", "/online", {}, {}, False),
+        ("channel", "/channel/name/test", CHANNEL_RESP, {"channel": "test"}, True),
+        ("channel", "/channel/name/test", {}, {"channel": "test"}, False),
+        ("channel", "/channel/id/123", CHANNEL_RESP, {"channel": 123}, True),
+        ("channel", "/channel/id/123", {}, {"channel": 123}, False),
     ),
 )
 def test_method_resp_handling(
@@ -49,5 +53,4 @@ def test_method_resp_handling(
 
     results = getattr(client, method)(**kwargs)
 
-    assert isinstance(results, list)
     assert bool(results) == expected

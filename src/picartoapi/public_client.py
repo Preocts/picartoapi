@@ -9,6 +9,7 @@ import logging
 
 from http_overeasy.http_client import HTTPClient
 from picartoapi.model.category import Category
+from picartoapi.model.channel import Channel
 from picartoapi.model.online import Online
 
 
@@ -78,3 +79,27 @@ class PublicClient:
         self.log.debug("Discovered %d channels.", len(results))
 
         return results
+
+    def channel(self, channel: str | int) -> Channel | None:
+        """
+        Get a specific channel by numeric ID or by channel (member) name.
+
+        Args:
+            channel: Numeric channel ID or full name of channel (member name)
+
+        Returns:
+            Channel object if found, otherwise `None`
+        """
+        self.log.debug("Looking for '%s' channel.", channel)
+
+        subroute = "id" if isinstance(channel, int) else "name"
+
+        resp = self.http.get(f"{self.base_url}/channel/{subroute}/{channel}")
+
+        if not resp.has_success() or not resp.get_json():
+            self.log.error("Request error %s: %s", resp.get_status(), resp.get_body())
+            return None
+
+        self.log.debug("Discovered channel.")
+
+        return Channel.build_from(resp.get_json())
