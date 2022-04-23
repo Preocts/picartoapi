@@ -22,7 +22,7 @@ class PublicClient:
         headers = {"content-type": "application/json", "accepts": "application/json"}
         self.http = HTTPClient(headers=headers)
 
-    def catagories(self) -> list[Category]:
+    def categories(self) -> list[Category]:
         """
         Get information about all categories. Can return an empty list.
 
