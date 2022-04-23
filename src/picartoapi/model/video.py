@@ -27,6 +27,12 @@ class Video(BaseModel):
         new_obj.id = video.get("id") or 0
         new_obj.title = video.get("title") or ""
         new_obj.stream_name = video.get("stream_name") or ""
+
+        # This attribute is excluded in the return of video searches
+        # Easier to delete here than build another model
+        if not new_obj.stream_name:
+            delattr(new_obj, "stream_name")
+
         new_obj.thumbnails = Thumbnails.build_from(video.get("thumbnails") or {})
         new_obj.file = video.get("file") or ""
         new_obj.filesize = video.get("filesize") or 0
