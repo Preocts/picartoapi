@@ -14,6 +14,7 @@ CATAGORIES_RESP = json.load(Path("tests/resp/categories.json").open())
 ONLINE_RESP = json.load(Path("tests/resp/online.json").open())
 CHANNEL_RESP = json.load(Path("tests/resp/channel.json").open())
 VIDEO_RESP = json.load(Path("tests/resp/videos.json").open())
+CHANNELS_RESP = json.load(Path("tests/resp/channels.json").open())
 
 
 @pytest.fixture
@@ -26,6 +27,7 @@ def client() -> Generator[PublicClient, None, None]:
 
 @pytest.mark.parametrize(
     ("method", "route", "resp", "kwargs", "expected"),
+    # fmt:off
     (
         ("categories", "/categories", CATAGORIES_RESP, {}, True),
         ("categories", "/categories", {}, {}, False),
@@ -39,7 +41,10 @@ def client() -> Generator[PublicClient, None, None]:
         ("videos", "/channel/name/test/videos", {}, {"channel": "test"}, False),
         ("videos", "/channel/id/123/videos", VIDEO_RESP, {"channel": 123}, True),
         ("videos", "/channel/id/123/videos", {}, {"channel": 123}, False),
+        ("search_channels", "/search/channels", CHANNELS_RESP, {"query": "test"}, True),
+        ("search_channels", "/search/channels", {}, {"query": "test"}, False),
     ),
+    # fmt:on
 )
 def test_method_resp_handling(
     client: PublicClient,

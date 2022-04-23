@@ -10,6 +10,7 @@ import logging
 from http_overeasy.http_client import HTTPClient
 from picartoapi.model.category import Category
 from picartoapi.model.channel import Channel
+from picartoapi.model.channel_stub import ChannelStub
 from picartoapi.model.online import Online
 from picartoapi.model.video import Video
 
@@ -128,5 +129,41 @@ class PublicClient:
             self.log.error("Request error %s: %s", resp.get_status(), resp.get_body())
 
         self.log.debug("Discovered %d catagories.", len(results))
+
+        return results
+
+    def search_channels(
+        self,
+        query: str,
+        *,
+        adult: bool = False,
+        page: int = 1,
+        commissions: bool = False,
+    ) -> list[ChannelStub]:
+        """
+        Get all channels matching the given search criteria (by name and tags)
+
+        Args:
+            query: The search query to use (does not support special qualifiers)
+            adult: Whether or not to include adult channels
+            page: The page to display
+            commissions: Whether or not to filter by streams offering commissions
+
+        Returns:
+            List of ChannelStub objects, can be empty.
+        """
+        self.log.debug("Searching for matches of `%s`", query)
+
+        results: list[ChannelStub] = []
+        fields = {"adult": adult, "page": page, "commissions": commissions}
+
+        resp = self.http.get(f"{self.base_url}/search/channels", fields=fields)
+
+        if resp.has_success() and resp.get_json():
+            results = [ChannelStub.build_from(stub) for stub in resp.get_json()]
+        else:
+            self.log.error("Request error %s: %s", resp.get_status(), resp.get_body())
+
+        self.log.debug("Discovered %d channels.", len(results))
 
         return results
