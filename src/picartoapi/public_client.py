@@ -11,6 +11,7 @@ from http_overeasy.http_client import HTTPClient
 from picartoapi.model.category import Category
 from picartoapi.model.channel import Channel
 from picartoapi.model.online import Online
+from picartoapi.model.video import Video
 
 
 class PublicClient:
@@ -103,3 +104,29 @@ class PublicClient:
         self.log.debug("Discovered channel.")
 
         return Channel.build_from(resp.get_json())
+
+    def videos(self, channel: str | int) -> list[Video]:
+        """
+        Get all videos for a channel by numeric ID or by channel (member) name.
+
+        Args:
+            channel: Numeric channel ID or full name of channel (member name)
+
+        Returns:
+            List of Video objects, can be empty.
+        """
+        self.log.debug("Looking for videos of '%s' channel.", channel)
+
+        results: list[Video] = []
+        subroute = "id" if isinstance(channel, int) else "name"
+
+        resp = self.http.get(f"{self.base_url}/channel/{subroute}/{channel}/videos")
+
+        if resp.has_success() and resp.get_json():
+            results = [Video.build_from(video) for video in resp.get_json()]
+        else:
+            self.log.error("Request error %s: %s", resp.get_status(), resp.get_body())
+
+        self.log.debug("Discovered %d catagories.", len(results))
+
+        return results

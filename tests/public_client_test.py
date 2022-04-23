@@ -13,6 +13,7 @@ from picartoapi.public_client import PublicClient
 CATAGORIES_RESP = json.load(Path("tests/resp/categories.json").open())
 ONLINE_RESP = json.load(Path("tests/resp/online.json").open())
 CHANNEL_RESP = json.load(Path("tests/resp/channel.json").open())
+VIDEO_RESP = json.load(Path("tests/resp/videos.json").open())
 
 
 @pytest.fixture
@@ -34,6 +35,10 @@ def client() -> Generator[PublicClient, None, None]:
         ("channel", "/channel/name/test", {}, {"channel": "test"}, False),
         ("channel", "/channel/id/123", CHANNEL_RESP, {"channel": 123}, True),
         ("channel", "/channel/id/123", {}, {"channel": 123}, False),
+        ("videos", "/channel/name/test/videos", VIDEO_RESP, {"channel": "test"}, True),
+        ("videos", "/channel/name/test/videos", {}, {"channel": "test"}, False),
+        ("videos", "/channel/id/123/videos", VIDEO_RESP, {"channel": 123}, True),
+        ("videos", "/channel/id/123/videos", {}, {"channel": 123}, False),
     ),
 )
 def test_method_resp_handling(
