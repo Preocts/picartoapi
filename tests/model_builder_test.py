@@ -23,6 +23,8 @@ from picartoapi.model.video import Video
 )
 def test_all_models(fixture_path: str, object_ref: BaseModel) -> None:
     fixture = json.load(Path(fixture_path).open())
+    if not isinstance(fixture, list):
+        fixture = [fixture]
 
     models = [object_ref.build_from(obj) for obj in fixture]
 
