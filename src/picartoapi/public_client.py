@@ -11,8 +11,8 @@ from http_overeasy.http_client import HTTPClient
 from picartoapi.model.category import Category
 from picartoapi.model.channel import Channel
 from picartoapi.model.channel_stub import ChannelStub
-from picartoapi.model.channel_video import ChannelVideo
 from picartoapi.model.online import Online
+from picartoapi.model.search_video import SearchVideo
 from picartoapi.model.video import Video
 
 
@@ -175,7 +175,7 @@ class PublicClient:
         *,
         adult: bool = False,
         page: int = 1,
-    ) -> list[ChannelVideo]:
+    ) -> list[SearchVideo]:
         """
         Get all videos with channels matching the given search criteria
 
@@ -189,13 +189,13 @@ class PublicClient:
         """
         self.log.debug("Searching for matches of `%s`", query)
 
-        results: list[ChannelVideo] = []
+        results: list[SearchVideo] = []
         fields = {"adult": adult, "page": page}
 
         resp = self.http.get(f"{self.base_url}/search/videos", fields=fields)
 
         if resp.has_success() and resp.get_json():
-            results = [ChannelVideo.build_from(stub) for stub in resp.get_json()]
+            results = [SearchVideo.build_from(stub) for stub in resp.get_json()]
         else:
             self.log.error("Request error %s: %s", resp.get_status(), resp.get_body())
 
