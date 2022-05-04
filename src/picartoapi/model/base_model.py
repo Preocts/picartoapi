@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import json
 from abc import ABC
-from abc import abstractclassmethod
+from abc import abstractmethod
 from typing import Any
 
 
@@ -21,6 +21,7 @@ class BaseModel(ABC):
         """Returns objects as serialized dictionary (JSON)"""
         return json.loads(self.__repr__())
 
-    @abstractclassmethod
+    @classmethod
+    @abstractmethod
     def build_from(cls, model_data: dict[str, Any]) -> BaseModel:
         raise NotImplementedError
