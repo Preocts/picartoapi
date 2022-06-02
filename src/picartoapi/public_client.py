@@ -6,14 +6,18 @@ https://api.picarto.tv/
 from __future__ import annotations
 
 import logging
+from json import JSONDecodeError
+from typing import Any
 
-from http_overeasy.http_client import HTTPClient
+import httpx
 from picartoapi.model.category import Category
 from picartoapi.model.channel import Channel
 from picartoapi.model.channel_stub import ChannelStub
 from picartoapi.model.online import Online
 from picartoapi.model.search_video import SearchVideo
 from picartoapi.model.video import Video
+
+HTTP_TIMEOUT = 10  # Seconds
 
 
 class PublicClient:
@@ -24,7 +28,27 @@ class PublicClient:
 
     def __init__(self) -> None:
         headers = {"content-type": "application/json", "accepts": "application/json"}
-        self.http = HTTPClient(headers=headers)
+        self._http = httpx.Client(headers=headers, timeout=httpx.Timeout(HTTP_TIMEOUT))
+
+    def _get(
+        self,
+        route: str,
+        params: dict[str, Any] | None = None,
+    ) -> list[dict[str, Any]] | None:
+        """Internal: Handle all HTTPS get calls, returns results if successful."""
+        if not params:
+            params = {}
+
+        resp = self._http.get(f"{self.base_url}/{route}", params=params)
+
+        if resp.status_code not in range(200, 300):
+            self.log.error("Request error: %d: %s", resp.status_code, resp.text)
+
+        try:
+            results = resp.json()
+            return results if isinstance(results, list) else [results]
+        except JSONDecodeError:
+            return None
 
     def categories(self) -> list[Category]:
         """
@@ -34,13 +58,9 @@ class PublicClient:
             List of Catagory objects
         """
         self.log.debug("Fetching catagories.")
-        results: list[Category] = []
-        resp = self.http.get(f"{self.base_url}/categories")
 
-        if resp.has_success() and resp.get_json():
-            results = [Category.build_from(cat) for cat in resp.get_json()]
-        else:
-            self.log.error("Request error %s: %s", resp.get_status(), resp.get_body())
+        resp = self._get(f"{self.base_url}/categories")
+        results = [Category.build_from(cat) for cat in resp] if resp else []
 
         self.log.debug("Discovered %d catagories.", len(results))
 
@@ -65,19 +85,14 @@ class PublicClient:
             List of Online objects, can be empty.
         """
         self.log.debug("Fetching online channels.")
-        results: list[Online] = []
-        fields = {
+
+        params = {
             "adult": adult,
             "gaming": gaming,
             "category": ",".join(category) if category else "",
         }
-
-        resp = self.http.get(f"{self.base_url}/online", fields)
-
-        if resp.has_success() and resp.get_json():
-            results = [Online.build_from(chan) for chan in resp.get_json()]
-        else:
-            self.log.error("Request error %s: %s", resp.get_status(), resp.get_body())
+        resp = self._get(f"{self.base_url}/online", params)
+        results = [Online.build_from(chan) for chan in resp] if resp else []
 
         self.log.debug("Discovered %d channels.", len(results))
 
@@ -96,16 +111,11 @@ class PublicClient:
         self.log.debug("Looking for '%s' channel.", channel)
 
         subroute = "id" if isinstance(channel, int) else "name"
+        resp = self._get(f"{self.base_url}/channel/{subroute}/{channel}")
 
-        resp = self.http.get(f"{self.base_url}/channel/{subroute}/{channel}")
+        self.log.debug("Discovered %d channel.", int(bool(resp)))
 
-        if not resp.has_success() or not resp.get_json():
-            self.log.error("Request error %s: %s", resp.get_status(), resp.get_body())
-            return None
-
-        self.log.debug("Discovered channel.")
-
-        return Channel.build_from(resp.get_json())
+        return Channel.build_from(resp[0]) if resp else None
 
     def videos(self, channel: str | int) -> list[Video]:
         """
@@ -119,15 +129,9 @@ class PublicClient:
         """
         self.log.debug("Looking for videos of '%s' channel.", channel)
 
-        results: list[Video] = []
         subroute = "id" if isinstance(channel, int) else "name"
-
-        resp = self.http.get(f"{self.base_url}/channel/{subroute}/{channel}/videos")
-
-        if resp.has_success() and resp.get_json():
-            results = [Video.build_from(video) for video in resp.get_json()]
-        else:
-            self.log.error("Request error %s: %s", resp.get_status(), resp.get_body())
+        resp = self._get(f"{self.base_url}/channel/{subroute}/{channel}/videos")
+        results = [Video.build_from(video) for video in resp] if resp else []
 
         self.log.debug("Discovered %d catagories.", len(results))
 
@@ -155,15 +159,9 @@ class PublicClient:
         """
         self.log.debug("Searching for matches of `%s`", query)
 
-        results: list[ChannelStub] = []
-        fields = {"adult": adult, "page": page, "commissions": commissions}
-
-        resp = self.http.get(f"{self.base_url}/search/channels", fields=fields)
-
-        if resp.has_success() and resp.get_json():
-            results = [ChannelStub.build_from(stub) for stub in resp.get_json()]
-        else:
-            self.log.error("Request error %s: %s", resp.get_status(), resp.get_body())
+        params = {"adult": adult, "page": page, "commissions": commissions}
+        resp = self._get(f"{self.base_url}/search/channels", params)
+        results = [ChannelStub.build_from(stub) for stub in resp] if resp else []
 
         self.log.debug("Discovered %d channels.", len(results))
 
@@ -189,15 +187,9 @@ class PublicClient:
         """
         self.log.debug("Searching for matches of `%s`", query)
 
-        results: list[SearchVideo] = []
-        fields = {"adult": adult, "page": page}
-
-        resp = self.http.get(f"{self.base_url}/search/videos", fields=fields)
-
-        if resp.has_success() and resp.get_json():
-            results = [SearchVideo.build_from(stub) for stub in resp.get_json()]
-        else:
-            self.log.error("Request error %s: %s", resp.get_status(), resp.get_body())
+        params = {"adult": adult, "page": page}
+        resp = self._get(f"{self.base_url}/search/videos", params)
+        results = [SearchVideo.build_from(stub) for stub in resp] if resp else []
 
         self.log.debug("Discovered %d videos.", len(results))
 
