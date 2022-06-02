@@ -8,12 +8,12 @@ import httpx
 import pytest
 from picartoapi.public_client import PublicClient
 
-CATAGORIES_RESP = Path("tests/resp/categories.json").open().read()
-ONLINE_RESP = Path("tests/resp/online.json").open().read()
-CHANNEL_RESP = Path("tests/resp/channel.json").open().read()
-VIDEO_RESP = Path("tests/resp/videos.json").open().read()
-CHANNELS_RESP = Path("tests/resp/channels.json").open().read()
-VIDEO_SEARCH_RESP = Path("tests/resp/searchvideo.json").open().read()
+CATAGORIES_RESP = Path("tests/resp/categories.json").read_text()
+ONLINE_RESP = Path("tests/resp/online.json").read_text()
+CHANNEL_RESP = Path("tests/resp/channel.json").read_text()
+VIDEO_RESP = Path("tests/resp/videos.json").read_text()
+CHANNELS_RESP = Path("tests/resp/channels.json").read_text()
+VIDEO_SEARCH_RESP = Path("tests/resp/searchvideo.json").read_text()
 
 
 @pytest.mark.parametrize(

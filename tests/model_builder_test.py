@@ -24,7 +24,7 @@ from picartoapi.model.video import Video
     ),
 )
 def test_all_models(fixture_path: str, object_ref: BaseModel) -> None:
-    fixture = json.load(Path(fixture_path).open())
+    fixture = json.loads(Path(fixture_path).read_text())
     if not isinstance(fixture, list):
         fixture = [fixture]
 
