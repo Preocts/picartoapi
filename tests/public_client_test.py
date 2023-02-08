@@ -47,7 +47,6 @@ def test_get_method_resp_handling(
     mock_resp = httpx.Response(status_code=200 if resp else 404, content=resp.encode())
     client = PublicClient()
     with patch.object(client._http, "get", return_value=mock_resp):
-
         results = getattr(client, attrib)(**kwargs)
 
     assert bool(results) == expected
